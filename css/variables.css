@@ -1,3 +1,100 @@
 :root {
-	--bg: hsl(49, 55%, 70%);
+	/* COLORS */
+	--primary-hue: 32;
+	--primary-saturation: 100%;
+	--primary-100: hsl(var(--primary-hue), var(--primary-saturation), 90%);
+	--primary-300: hsl(var(--primary-hue), var(--primary-saturation), 70%);
+	--primary-500: hsl(var(--primary-hue), var(--primary-saturation), 50%);
+	--primary-700: hsl(var(--primary-hue), var(--primary-saturation), 30%);
+	--primary-900: hsl(var(--primary-hue), var(--primary-saturation), 10%);
+
+	--accent-hue: 144;
+	--accent-saturation: 37%;
+	--accent-brightness: 83%;
+	--accent: hsl(var(--accent-hue), var(--accent-saturation), var(--accent-brightness));
+
+	--secondary-accent-hue: 225;
+	--secondary-accent-saturation: 97%;
+	--secondary-accent-brightness: 85%;
+	--secondary-accent: hsl(var(--secondary-accent-hue), var(--secondary-accent-saturation), var(--secondary-accent-brightness));
+
+	--tertiary-accent-hue: 32;
+	--tertiary-accent-saturation: 100%;
+	--tertiary-accent-brightness: 75%;
+	--tertiary-accent: hsl(var(--tertiary-accent-hue), var(--tertiary-accent-saturation), var(--tertiary-accent-brightness));
+
+	/* TYPOGRAPHY */
+	--fsize-sm: 0.8em;
+	--fsize-md: 1em;
+	--fsize-lg: 1.4em;
+	--fsize-xl: 2em;
+
+	/* BORDER RADIUS */
+	--radius-sm: 1em;
+	--radius: calc(var(--radius-sm) * 2);
+	--radius-lg: calc(var(--radius-sm) * 3);
+	--radius-full: 9999px;
+
+	/* TRANSITIONS */
+	--trans-fast: 0.25s;
+	--trans-mid: 0.5s;
+	--trans-slow: 0.75s;
+
+	--trans-ease: ease;
+	--trans-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+	--transition-fast: var(--trans-fast) var(--trans-ease);
+	--transition: var(--trans-mid) var(--trans-ease);
+	--transition-fast-elastic: var(--trans-fast) var(--trans-elastic);
+	--transition-elastic: var(--trans-mid) var(--trans-elastic);
+
+	/* SHADOWS */
+	--shadow-clone: 0 0 0 0.15rem hsla(0, 0%, 0%, 0.2);
+	--accent-shadow-clone: 0 0 0 0.15rem var(--accent);
+	--secondary-shadow-clone: 0 0 0 0.15rem var(--secondary-accent);
+	--tertiary-shadow-clone: 0 0 0 0.15rem var(--tertiary-accent);
+
+	/* GENERAL */
+	--bg-card: hsl(0, 0%, 100%);
+	--bg: hsl(var(--primary-hue), 80%, 97.5%);
+	--color: hsl(0, 0%, 0%);
+
+	--container-max-w: 1536px;
+	--path-opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--shadow-clone: 0 0 0 0.15rem hsla(0, 0%, 100%, 0.2);
+		--accent-shadow-clone: 0 0 0 0.15rem
+			hsla(var(--accent-hue), var(--accent-saturation), var(--accent-brightness), var(--path-opacity));
+		--secondary-shadow-clone: 0 0 0 0.15rem
+			hsla(var(--secondary-accent-hue), var(--secondary-accent-saturation), var(--secondary-accent-brightness), var(--path-opacity));
+		--tertiary-shadow-clone: 0 0 0 0.15rem
+			hsla(var(--tertiary-accent-hue), var(--tertiary-accent-saturation), var(--tertiary-accent-brightness), var(--path-opacity));
+
+		--bg-card: hsl(0, 0%, 10%);
+		--bg: hsl(var(--primary-hue), 10%, 0%);
+		--color: hsl(0, 0%, 100%);
+
+		--path-opacity: 0.3;
+	}
+}
+
+@media (prefers-reduced-motion) {
+	:root {
+		--trans-fast: 0.05s;
+		--trans-mid: 0.1s;
+		--trans-slow: 0.15s;
+
+		--trans-elastic: ease;
+	}
+}
+
+@media print {
+	:root {
+		--bg-card: white;
+		--bg: white;
+		--color: black;
+	}
 }

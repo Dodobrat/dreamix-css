@@ -1,0 +1,443 @@
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	--bg-color: var(--bg);
+	--text-color: var(--color);
+	--card-bg: var(--bg-card);
+
+	background-color: var(--bg-color);
+	color: var(--text-color);
+}
+
+main {
+	overflow: hidden;
+	padding: 3em;
+	margin: -3em;
+	position: relative;
+}
+
+footer,
+header {
+	grid-column: 1 / 2;
+	padding: 3em 0;
+}
+
+a {
+	color: var(--text-color);
+	text-decoration: none;
+}
+
+aside {
+	background-color: var(--card-bg);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow-clone);
+	grid-column: 1 / 1;
+	grid-row: 2 / 3;
+	max-height: calc(100vh - 2em);
+	overflow: hidden;
+	position: sticky;
+	top: 1em;
+	user-select: none;
+	width: 100%;
+}
+
+aside [data-aside-title] {
+	padding: 0.5em 1em;
+}
+
+aside ul {
+	counter-reset: list-numbers;
+
+	display: grid;
+	gap: 1em;
+	grid-auto-flow: column;
+	grid-auto-columns: min-content;
+	list-style-type: none;
+	overflow-x: auto;
+	overscroll-behavior: contain;
+	padding-block-end: 1.5em;
+	padding-inline: 1.5em;
+	scroll-padding-inline: 1.5em;
+	scroll-snap-type: inline mandatory;
+}
+
+aside ul li {
+	counter-increment: list-numbers;
+
+	align-items: center;
+	border-radius: var(--radius);
+	border: 0.15em solid var(--tertiary-accent);
+	display: flex;
+	font-weight: bold;
+	gap: 1em;
+	padding: 0.5em 1em;
+	scroll-snap-align: start;
+	white-space: nowrap;
+	width: max-content;
+}
+
+aside ul li::before {
+	content: "#" counter(list-numbers) " ";
+	font-weight: bolder;
+	font-size: 1.5em;
+}
+
+.title {
+	display: inline-flex;
+	flex-direction: column;
+	font-size: calc(var(--fsize-xl) * 2);
+	letter-spacing: 0.05em;
+	line-height: 1.1;
+	position: relative;
+}
+.title::after {
+	background-image: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	background-size: 0% 100%;
+	border-radius: var(--radius);
+	content: attr(data-motto);
+	font-size: calc(var(--fsize-sm) / 4);
+	font-weight: 900;
+	line-height: 1.4;
+	margin-block-start: 1em;
+	padding-inline-start: 1em;
+	text-transform: uppercase;
+	transition: background-size var(--transition), color var(--transition);
+}
+.title:hover::after {
+	color: white;
+	background-size: 100% 100%;
+}
+
+/* CARD */
+.card {
+	--accent-color: hsl(var(--accent-hue), var(--accent-saturation), 37.5%);
+	--icon-bg-color: hsla(var(--accent-hue), var(--accent-saturation), 37.5%, 0.25);
+	--icon-size: var(--fsize-xl);
+	--accent-shadow: var(--accent-shadow-clone);
+	--accent-path: hsla(var(--accent-hue), var(--accent-saturation), var(--accent-brightness), var(--path-opacity));
+
+	background-color: var(--card-bg);
+	border-radius: var(--radius);
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	isolation: isolate;
+	outline: none;
+	position: relative;
+	transform-origin: bottom;
+	transition: transform var(--transition-elastic);
+}
+.card::before,
+.card::after {
+	border-radius: var(--radius);
+	content: "";
+	inset: 0;
+	pointer-events: none;
+	position: absolute;
+	user-select: none;
+}
+.card::before {
+	box-shadow: var(--accent-shadow);
+	z-index: -2;
+}
+.card::after {
+	background-color: var(--accent-path);
+	clip-path: circle(70% at 100% 100%);
+	overflow: hidden;
+	transition: clip-path var(--transition-elastic);
+	z-index: -1;
+}
+
+.card__header {
+	padding: 2em;
+	transition: opacity var(--transition-elastic);
+}
+
+.card__heading {
+	align-items: center;
+	display: flex;
+}
+
+.card__icon {
+	color: var(--accent-color);
+	flex-shrink: 0;
+	font-size: var(--icon-size);
+	padding: 0.375em;
+	position: relative;
+	user-select: none;
+}
+.card__icon::before {
+	background-color: var(--icon-bg-color);
+	border-radius: var(--radius-full);
+	content: "";
+	inset: 0;
+	position: absolute;
+}
+
+.card__sub-title {
+	color: var(--accent-color);
+	font-size: var(--fsize-lg);
+	font-weight: bold;
+	margin-inline-start: 0.5em;
+	text-transform: uppercase;
+	user-select: none;
+}
+
+.card__title {
+	font-size: var(--fsize-xl);
+	line-height: 1.2;
+	margin-block-start: 0.75em;
+}
+
+.card__body {
+	position: relative;
+}
+.card__body::before {
+	background-color: var(--primary-700);
+	block-size: 5rem;
+	border-radius: 50%;
+	content: "";
+	filter: blur(0.75rem);
+	inline-size: 12.5rem;
+	left: 50%;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	transform: translate(-35%, 150%) rotateZ(-5deg);
+	transition: opacity var(--transition-elastic);
+}
+.card__body svg {
+	max-height: 25em;
+	pointer-events: none;
+	user-select: none;
+}
+
+/* VARIANTS */
+.card--secondary {
+	--accent-color: hsl(var(--secondary-accent-hue), var(--secondary-accent-saturation), 60%);
+	--icon-bg-color: hsla(var(--secondary-accent-hue), var(--secondary-accent-saturation), 60%, 0.15);
+	--icon-size: var(--fsize-xl);
+	--accent-shadow: var(--secondary-shadow-clone);
+	--accent-path: hsla(
+		var(--secondary-accent-hue),
+		var(--secondary-accent-saturation),
+		var(--secondary-accent-brightness),
+		var(--path-opacity)
+	);
+}
+
+.card--tertiary {
+	--accent-color: hsl(var(--tertiary-accent-hue), var(--tertiary-accent-saturation), 45%);
+	--icon-bg-color: hsla(var(--tertiary-accent-hue), var(--tertiary-accent-saturation), 45%, 0.15);
+	--icon-size: var(--fsize-xl);
+	--accent-shadow: var(--tertiary-shadow-clone);
+	--accent-path: hsla(
+		var(--tertiary-accent-hue),
+		var(--tertiary-accent-saturation),
+		var(--tertiary-accent-brightness),
+		var(--path-opacity)
+	);
+}
+
+/* INTERACTIVITY */
+.grid__item {
+	transition: transform var(--transition-fast-elastic);
+}
+.grid__item:active {
+	transform: scale(0.9);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .card {
+	transform: rotateX(45deg) rotateZ(2.5deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .card::after {
+	clip-path: circle(25% at 100% 100%);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .card__header {
+	opacity: 0.25;
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .card__body::before {
+	opacity: 0.25;
+}
+
+/* GRAPHICS */
+.card :is(.burger, .salad, .meal) {
+	transition: transform var(--transition-elastic), filter var(--transition-elastic);
+	transform: scale(1.25);
+}
+
+:is(.grid__item:hover, .grid__item:focus-visible) :is(.burger, .salad, .meal) {
+	filter: drop-shadow(0 0 1.5rem hsla(var(--primary-hue), var(--primary-saturation), 30%, 0.25));
+	transform: scale(1.5) scaleY(1.5) translateY(-25%);
+}
+
+/* ------------------------------ */
+/* SVGs */
+/* ------------------------------ */
+
+:is(.burger, .salad, .meal) {
+	block-size: auto;
+	inline-size: 100%;
+	margin-inline: auto;
+}
+
+:is(.burger, .salad, .meal) * {
+	transition: transform var(--transition-elastic);
+}
+
+/* BURGER */
+:is(.grid__item:hover, .grid__item:focus-visible) .burger > * {
+	transform: translate(0, 0);
+}
+
+/* SALAD */
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#lettuce-b {
+	transform: translate(5%, -25%) rotateZ(15deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#onion-d {
+	transform: translate(10%, -20%) skewX(-15deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#tomato-e {
+	transform: translate(10%, -10%) skewY(-5deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#tomato-d {
+	transform: translate(-10%, -20%) rotateZ(10deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#lettuce-a {
+	transform: translate(0, 10%) rotateZ(-15deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#tomato-b {
+	transform: translate(5%, -30%) skewY(25deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#onion-c {
+	transform: translate(5%, -10%) rotateZ(-5deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#tomato-a {
+	transform: translate(0, 17.5%) rotateZ(-20deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#onion-b {
+	transform: translate(10%, -24.5%) rotateZ(30deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .salad > *#onion-a {
+	transform: translate(55%, -20%) rotateZ(40deg);
+}
+
+/* MEAL */
+:is(.grid__item:hover, .grid__item:focus-visible) .meal #menu-cup-cap {
+	transform: translate(2.5%, -10%) rotateZ(5deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .meal #menu-top-bun {
+	transform: translate(-5%, -8%) rotateZ(-5deg);
+}
+:is(.grid__item:hover, .grid__item:focus-visible) .meal :is(#menu-ketchup, #menu-patties, #menu-bottom-sauce) {
+	transform: translate(-4%, -4%) rotateZ(-4deg);
+}
+
+@media (min-width: 1024px) {
+	footer,
+	header {
+		grid-column: 1 / 3;
+	}
+
+	aside {
+		display: flex;
+		flex-direction: column;
+		grid-column: 2 / 3;
+		max-height: calc(100vh - 6rem);
+		top: 3rem;
+		width: 22.5rem;
+	}
+
+	aside ul {
+		grid-auto-flow: row;
+		grid-auto-rows: min-content;
+		overflow-y: auto;
+		padding-inline: 1em;
+		scroll-padding-block: 1em;
+		scroll-snap-type: block mandatory;
+	}
+
+	aside ul li {
+		white-space: normal;
+	}
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion) {
+	.grid__item:active {
+		transform: none;
+	}
+	:is(.grid__item:hover, .grid__item:focus-visible) .card {
+		transform: none;
+	}
+	:is(.grid__item:hover, .grid__item:focus-visible) .card::after {
+		clip-path: circle(25% at 100% 100%);
+	}
+	:is(.grid__item:hover, .grid__item:focus-visible) .card__header {
+		opacity: 0.25;
+	}
+	:is(.grid__item:hover, .grid__item:focus-visible) .card__body::before {
+		opacity: 0;
+	}
+	:is(.grid__item:hover, .grid__item:focus-visible) :is(.burger, .salad, .meal) {
+		filter: drop-shadow(0 0 1.5rem hsla(var(--primary-hue), var(--primary-saturation), 30%, 0.25));
+		transform: scale(1.5) translateY(-10%);
+	}
+}
+
+@media print, screen and (pointer: coarse) {
+	.card__body svg {
+		max-height: 10em;
+	}
+
+	/* BURGER */
+	.burger > * {
+		transform: translate(0, 0);
+	}
+
+	/* SALAD */
+	.salad > *#lettuce-b {
+		transform: translate(5%, -25%) rotateZ(15deg);
+	}
+	.salad > *#onion-d {
+		transform: translate(10%, -20%) skewX(-15deg);
+	}
+	.salad > *#tomato-e {
+		transform: translate(10%, -10%) skewY(-5deg);
+	}
+	.salad > *#tomato-d {
+		transform: translate(-10%, -20%) rotateZ(10deg);
+	}
+	.salad > *#lettuce-a {
+		transform: translate(0, 10%) rotateZ(-15deg);
+	}
+	.salad > *#tomato-b {
+		transform: translate(5%, -30%) skewY(25deg);
+	}
+	.salad > *#onion-c {
+		transform: translate(5%, -10%) rotateZ(-5deg);
+	}
+	.salad > *#tomato-a {
+		transform: translate(0, 17.5%) rotateZ(-20deg);
+	}
+	.salad > *#onion-b {
+		transform: translate(10%, -24.5%) rotateZ(30deg);
+	}
+	.salad > *#onion-a {
+		transform: translate(55%, -20%) rotateZ(40deg);
+	}
+
+	/* MEAL */
+	.meal #menu-cup-cap {
+		transform: translate(2.5%, -10%) rotateZ(5deg);
+	}
+	.meal #menu-top-bun {
+		transform: translate(-5%, -8%) rotateZ(-5deg);
+	}
+	.meal :is(#menu-ketchup, #menu-patties, #menu-bottom-sauce) {
+		transform: translate(-4%, -4%) rotateZ(-4deg);
+	}
+}

@@ -4,9 +4,77 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="css/variables.css" />
+		<link rel="stylesheet" href="css/typography.css" />
 		<title>Document</title>
 	</head>
 	<body>
-		Hello from VIEW page
+		<h1>Hello from VIEW page</h1>
+
+		<section aria-labelledby="about-title" id="about" class="typo">
+			<h1 id="about-title">About Us</h1>
+			<hr />
+			<article>
+				<h1>Random HTML elements</h1>
+				<p>Some HTML elements that not enough people are using.</p>
+
+				<p>You can use the mark tag to <mark>highlight</mark> text.</p>
+				<p><del>This line of text is meant to be treated as deleted text.</del></p>
+				<p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+				<p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+				<p><u>This line of text will render as underlined.</u></p>
+				<p><small>This line of text is meant to be treated as fine print.</small></p>
+				<p><strong>This line rendered as bold text.</strong></p>
+				<p><em>This line rendered as italicized text.</em></p>
+
+				<p>For example, <code>&lt;section&gt;</code> should be wrapped as inline.</p>
+
+				<pre><code>&lt;p&gt;Sample text here...&lt;/p&gt;<br>&lt;p&gt;And another line of sample text here...&lt;/p&gt;
+				</code></pre>
+
+				<p><var>y</var> = <var>m</var><var>x</var> + <var>b</var></p>
+
+				<p>
+					To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br />
+					To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd>
+				</p>
+
+				<samp>This text is meant to be treated as sample output from a computer program.</samp>
+
+				<address>
+					<strong>Full Name</strong><br />
+					<a href="#">first.last@example.com</a>
+				</address>
+
+				<details open>
+					<summary>Even more details</summary>
+					<p>Here are even more details about the details.</p>
+				</details>
+
+				<figure>
+					<blockquote>
+						<p>A well-known quote, contained in a blockquote element.</p>
+					</blockquote>
+					<figcaption>Someone famous in <cite title="Source Title">Source Title</cite></figcaption>
+				</figure>
+
+				<p>
+					You should use this anytime you have an abbreviation in your text, such as <abbr title="abbreviation">abbr</abbr>, appt,
+					or even units, like <abbr title="millimeters">mm</abbr>, mph, or even things like
+					<abbr title="HyperText Markup Language">HTML</abbr> and CSS!
+				</p>
+
+				<p>The <dfn>dfn element</dfn> is used to mark a term that is being defined within the current sentence.</p>
+				<p>
+					If you repeat the term later on, you don't need to use dfn again, as you're only using the term, not defining what it
+					is.
+				</p>
+				<p>
+					<dfn><abbr title="Cascading Style Sheets">CSS</abbr></dfn> is a langauge is used to style the web.
+				</p>
+			</article>
+		</section>
 	</body>
 </html>

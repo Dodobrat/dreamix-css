@@ -49,14 +49,14 @@
 	--transition-elastic: var(--trans-mid) var(--trans-elastic);
 
 	/* SHADOWS */
-	--shadow-clone: 0 0 0 0.15rem hsla(0, 0%, 0%, 0.2);
-	--accent-shadow-clone: 0 0 0 0.15rem var(--accent);
-	--secondary-shadow-clone: 0 0 0 0.15rem var(--secondary-accent);
-	--tertiary-shadow-clone: 0 0 0 0.15rem var(--tertiary-accent);
+	--shadow-clone: inset 0 0 0 0.15rem hsla(0, 0%, 0%, 0.2);
+	--accent-shadow-clone: inset 0 0 0 0.15rem var(--accent);
+	--secondary-shadow-clone: inset 0 0 0 0.15rem var(--secondary-accent);
+	--tertiary-shadow-clone: inset 0 0 0 0.15rem var(--tertiary-accent);
 
 	/* GENERAL */
 	--bg-card: hsl(0, 0%, 100%);
-	--bg: hsl(var(--primary-hue), 80%, 97.5%);
+	--bg: hsl(var(--primary-hue), 50%, 92.5%);
 	--color: hsl(0, 0%, 0%);
 
 	--container-max-w: 1536px;
@@ -65,12 +65,12 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--shadow-clone: 0 0 0 0.15rem hsla(0, 0%, 100%, 0.2);
-		--accent-shadow-clone: 0 0 0 0.15rem
+		--shadow-clone: inset 0 0 0 0.15rem hsla(0, 0%, 100%, 0.2);
+		--accent-shadow-clone: inset 0 0 0 0.15rem
 			hsla(var(--accent-hue), var(--accent-saturation), var(--accent-brightness), var(--path-opacity));
-		--secondary-shadow-clone: 0 0 0 0.15rem
+		--secondary-shadow-clone: inset 0 0 0 0.15rem
 			hsla(var(--secondary-accent-hue), var(--secondary-accent-saturation), var(--secondary-accent-brightness), var(--path-opacity));
-		--tertiary-shadow-clone: 0 0 0 0.15rem
+		--tertiary-shadow-clone: inset 0 0 0 0.15rem
 			hsla(var(--tertiary-accent-hue), var(--tertiary-accent-saturation), var(--tertiary-accent-brightness), var(--path-opacity));
 
 		--bg-card: hsl(0, 0%, 10%);

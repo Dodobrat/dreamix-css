@@ -1,3 +1,11 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.12,
+* Autoprefixer: v10.4.4
+* Browsers: last 4 version
+* NOTE: Removed some auto converted grid styles
+*/
+
 /* 
 TABLE OF CONTENT
 	1. CSS reset
@@ -32,6 +40,7 @@ TABLE OF CONTENT
 *,
 *::before,
 *::after {
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -128,6 +137,8 @@ main {
 
 footer,
 nav {
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 1;
 	grid-column: 1 / 2;
 	padding: 3em 0;
 }
@@ -145,22 +156,30 @@ a {
 }
 
 .wrapper-grid {
+	display: -ms-grid;
 	display: grid;
+	-ms-grid-columns: 1fr;
 	grid-template-columns: 1fr;
+	-ms-grid-rows: auto 1.5em auto 1.5em 1fr 1.5em auto;
 	grid-template-rows: auto auto 1fr auto;
 	min-height: 100%;
+	-webkit-box-align: start;
+	-ms-flex-align: start;
 	align-items: start;
 	gap: 1.5em;
 }
 
 .grid {
+	display: -ms-grid;
 	display: grid;
 	gap: 1.5em;
+	-ms-grid-columns: 1fr;
 	grid-template-columns: 1fr;
 	grid-auto-flow: row dense;
 }
 
 .span--2 {
+	-ms-grid-column-span: 1;
 	grid-column: span 1;
 }
 
@@ -181,11 +200,19 @@ a[data-skip] {
 	outline: none;
 	padding: 1em;
 	position: fixed;
+	-webkit-transform: translateY(-110vmax);
+	-ms-transform: translateY(-110vmax);
 	transform: translateY(-110vmax);
+	-webkit-transition: -webkit-transform var(--transition);
+	transition: -webkit-transform var(--transition);
+	-o-transition: transform var(--transition);
 	transition: transform var(--transition);
+	transition: transform var(--transition), -webkit-transform var(--transition);
 	z-index: 99;
 }
 a[data-skip]:focus-visible {
+	-webkit-transform: translateY(0);
+	-ms-transform: translateY(0);
 	transform: translateY(0);
 }
 a[data-skip]:is(:focus, :hover) {
@@ -196,8 +223,14 @@ a[data-skip]:is(:focus, :hover) {
 /* 5. NAVIGATION */
 nav {
 	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
 
@@ -215,10 +248,13 @@ nav {
 	border-radius: var(--radius-full);
 	cursor: pointer;
 	display: block;
+	-ms-flex-negative: 0;
 	flex-shrink: 0;
 	font-size: var(--fsize-lg);
 	inline-size: 2.5em;
 	position: relative;
+	-webkit-transition: background-color var(--transition);
+	-o-transition: background-color var(--transition);
 	transition: background-color var(--transition);
 	z-index: 4;
 }
@@ -233,6 +269,7 @@ nav {
 }
 #menu-toggle:checked + label,
 #menu-toggle + label:is(:hover, :focus) {
+	-webkit-box-shadow: var(--shadow-clone);
 	box-shadow: var(--shadow-clone);
 	background-color: var(--bg);
 	color: var(--primary-500);
@@ -241,10 +278,16 @@ nav {
 	inset-block-start: 50%;
 	inset-inline-start: 50%;
 	position: absolute;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
+	-webkit-transition: opacity var(--transition);
+	-o-transition: opacity var(--transition);
 	transition: opacity var(--transition);
 }
 html[dir="rtl"] #menu-toggle + label svg {
+	-webkit-transform: translate(50%, -50%);
+	-ms-transform: translate(50%, -50%);
 	transform: translate(50%, -50%);
 }
 #menu-toggle + label .menu__opened {
@@ -263,8 +306,14 @@ html[dir="rtl"] #menu-toggle + label svg {
 /* 5.2. NAVIGATION MENU */
 #menu-toggle:checked ~ ul[data-dropdown] {
 	pointer-events: all;
+	-webkit-transform: translateX(0);
+	-ms-transform: translateX(0);
 	transform: translateX(0);
+	-webkit-transition: visibility var(--transition) 0s, -webkit-transform var(--transition);
+	transition: visibility var(--transition) 0s, -webkit-transform var(--transition);
+	-o-transition: transform var(--transition), visibility var(--transition) 0s;
 	transition: transform var(--transition), visibility var(--transition) 0s;
+	transition: transform var(--transition), visibility var(--transition) 0s, -webkit-transform var(--transition);
 	visibility: visible;
 	will-change: transform;
 }
@@ -275,15 +324,23 @@ ul[data-dropdown] {
 	inset: 0;
 	list-style-type: none;
 	overflow-y: auto;
+	-ms-scroll-chaining: none;
 	overscroll-behavior: contain;
 	padding-block: 5em;
+	-webkit-padding-end: 4em;
 	padding-inline-end: 4em;
+	-webkit-padding-start: 1em;
 	padding-inline-start: 1em;
 	pointer-events: none;
 	position: fixed;
 	transform: translateX(110%) translateZ(0);
 	-webkit-transform: translateX(110%) translateZ(0);
+	-webkit-transition: visibility var(--transition) var(--trans-mid), -webkit-transform var(--trans-slow) var(--trans-ease);
+	transition: visibility var(--transition) var(--trans-mid), -webkit-transform var(--trans-slow) var(--trans-ease);
+	-o-transition: transform var(--trans-slow) var(--trans-ease), visibility var(--transition) var(--trans-mid);
 	transition: transform var(--trans-slow) var(--trans-ease), visibility var(--transition) var(--trans-mid);
+	transition: transform var(--trans-slow) var(--trans-ease), visibility var(--transition) var(--trans-mid),
+		-webkit-transform var(--trans-slow) var(--trans-ease);
 	visibility: hidden;
 	z-index: 3;
 }
@@ -297,6 +354,8 @@ ul[data-dropdown] a:not([data-skip]) {
 	display: block;
 	outline: none;
 	padding: 0.5em 1em;
+	-webkit-transition: background-color var(--transition-fast);
+	-o-transition: background-color var(--transition-fast);
 	transition: background-color var(--transition-fast);
 	white-space: nowrap;
 }
@@ -305,21 +364,31 @@ ul[data-dropdown] a:not([data-skip]):is(:hover, :focus, :focus-visible) {
 	color: var(--primary-500);
 }
 ul[data-dropdown] li > ul {
+	-webkit-box-shadow: -0.2em 0 0 -0.1em var(--color);
 	box-shadow: -0.2em 0 0 -0.1em var(--color);
+	display: -ms-grid;
 	display: grid;
 	gap: 0.25em;
 	list-style-type: none;
 	margin-block: 0.5em;
+	-webkit-margin-start: 1.25em;
 	margin-inline-start: 1.25em;
+	-webkit-padding-start: 0.25em;
 	padding-inline-start: 0.25em;
 }
 html[dir="rtl"] ul[data-dropdown] li > ul {
+	-webkit-box-shadow: 0.2em 0 0 -0.1em var(--color);
 	box-shadow: 0.2em 0 0 -0.1em var(--color);
 }
 
 /* 5.3. NAVIGATION TITLE */
 .title * {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
 	display: inline-flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	font-size: calc(var(--fsize-xl) * 1.25);
 	letter-spacing: 0.05em;
@@ -327,6 +396,15 @@ html[dir="rtl"] ul[data-dropdown] li > ul {
 	position: relative;
 }
 .title *::after {
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		from(rgba(131, 58, 180, 1)),
+		color-stop(50%, rgba(253, 29, 29, 1)),
+		to(rgba(252, 176, 69, 1))
+	);
+	background-image: -o-linear-gradient(left, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
 	background-image: linear-gradient(90deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
 	background-position: bottom left;
 	background-repeat: no-repeat;
@@ -336,12 +414,17 @@ html[dir="rtl"] ul[data-dropdown] li > ul {
 	font-size: calc(var(--fsize-sm) / 4);
 	font-weight: 900;
 	line-height: 1.4;
+	-webkit-margin-before: 1em;
 	margin-block-start: 1em;
+	-webkit-padding-start: 1em;
 	padding-inline-start: 1em;
 	text-transform: uppercase;
+	-webkit-transition: background-size var(--transition), color var(--transition);
+	-o-transition: background-size var(--transition), color var(--transition);
 	transition: background-size var(--transition), color var(--transition);
 }
 .title:focus * {
+	-webkit-text-decoration-line: underline;
 	text-decoration-line: underline;
 }
 .title:is(:hover, :focus-visible) *::after {
@@ -360,13 +443,24 @@ html[dir="rtl"] ul[data-dropdown] li > ul {
 	background-color: var(--card-bg);
 	border-radius: var(--radius);
 	cursor: pointer;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
 	isolation: isolate;
 	outline: none;
 	position: relative;
+	-webkit-transform-origin: bottom;
+	-ms-transform-origin: bottom;
 	transform-origin: bottom;
+	-webkit-transition: -webkit-transform var(--transition-elastic);
+	transition: -webkit-transform var(--transition-elastic);
+	-o-transition: transform var(--transition-elastic);
 	transition: transform var(--transition-elastic);
+	transition: transform var(--transition-elastic), -webkit-transform var(--transition-elastic);
 }
 .card::before,
 .card::after {
@@ -375,36 +469,56 @@ html[dir="rtl"] ul[data-dropdown] li > ul {
 	inset: 0;
 	pointer-events: none;
 	position: absolute;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 .card::before {
+	-webkit-box-shadow: var(--accent-shadow);
 	box-shadow: var(--accent-shadow);
 	z-index: -2;
 }
 .card::after {
 	background-color: var(--accent-path);
+	-webkit-clip-path: circle(70% at 100% 100%);
 	clip-path: circle(70% at 100% 100%);
 	overflow: hidden;
+	-webkit-transition: -webkit-clip-path var(--transition-elastic);
+	transition: -webkit-clip-path var(--transition-elastic);
+	-o-transition: clip-path var(--transition-elastic);
 	transition: clip-path var(--transition-elastic);
+	transition: clip-path var(--transition-elastic), -webkit-clip-path var(--transition-elastic);
 	z-index: -1;
 }
 html[dir="rtl"] .card::after {
+	-webkit-clip-path: circle(70% at 0% 100%);
 	clip-path: circle(70% at 0% 100%);
 }
 .card__header {
 	padding: 2em;
+	-webkit-transition: opacity var(--transition-elastic);
+	-o-transition: opacity var(--transition-elastic);
 	transition: opacity var(--transition-elastic);
 }
 .card__heading {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 }
 .card__icon {
 	color: var(--accent-color);
+	-ms-flex-negative: 0;
 	flex-shrink: 0;
 	font-size: var(--icon-size);
 	padding: 0.375em;
 	position: relative;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 .card__icon::before {
@@ -418,13 +532,18 @@ html[dir="rtl"] .card::after {
 	color: var(--accent-color);
 	font-size: var(--fsize-lg);
 	font-weight: bold;
+	-webkit-margin-start: 0.5em;
 	margin-inline-start: 0.5em;
 	text-transform: uppercase;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 .card__title {
 	font-size: var(--fsize-xl);
 	line-height: 1.2;
+	-webkit-margin-before: 0.75em;
 	margin-block-start: 0.75em;
 }
 .card__body {
@@ -435,18 +554,26 @@ html[dir="rtl"] .card::after {
 	block-size: 5rem;
 	border-radius: 50%;
 	content: "";
+	-webkit-filter: blur(0.75rem);
 	filter: blur(0.75rem);
 	inline-size: 12.5rem;
 	inset-block-start: 50%;
 	inset-inline-start: 50%;
 	opacity: 0;
 	position: absolute;
+	-webkit-transform: translate(-35%, 150%) rotateZ(-5deg);
+	-ms-transform: translate(-35%, 150%) rotate(-5deg);
 	transform: translate(-35%, 150%) rotateZ(-5deg);
+	-webkit-transition: opacity var(--transition-elastic);
+	-o-transition: opacity var(--transition-elastic);
 	transition: opacity var(--transition-elastic);
 }
 .card__body svg {
 	max-block-size: 25em;
 	pointer-events: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -479,30 +606,46 @@ html[dir="rtl"] .card::after {
 /* 6.2. CARD INTERACTIVITY */
 .grid__item {
 	border-radius: var(--radius);
+	-webkit-transition: -webkit-transform var(--transition-fast-elastic);
+	transition: -webkit-transform var(--transition-fast-elastic);
+	-o-transition: transform var(--transition-fast-elastic);
 	transition: transform var(--transition-fast-elastic);
+	transition: transform var(--transition-fast-elastic), -webkit-transform var(--transition-fast-elastic);
 	will-change: contents;
 }
 .grid__item:target {
+	-webkit-animation-name: pulse;
 	animation-name: pulse;
+	-webkit-animation-duration: 1.5s;
 	animation-duration: 1.5s;
+	-webkit-animation-timing-function: var(--transition-elastic);
 	animation-timing-function: var(--transition-elastic);
+	-webkit-animation-delay: 0.25s;
 	animation-delay: 0.25s;
+	-webkit-animation-iteration-count: infinite;
 	animation-iteration-count: infinite;
+	-webkit-animation-fill-mode: forwards;
 	animation-fill-mode: forwards;
 }
 .grid__item:target:active {
+	-webkit-animation-play-state: paused;
 	animation-play-state: paused;
 }
 .grid__item:not(:target):active {
+	-webkit-transform: scale(0.9);
+	-ms-transform: scale(0.9);
 	transform: scale(0.9);
 }
 .grid__item:is(:hover, :focus-visible) .card {
+	-webkit-transform: rotateX(45deg) rotateZ(2.5deg);
 	transform: rotateX(45deg) rotateZ(2.5deg);
 }
 .grid__item:is(:hover, :focus-visible) .card::after {
+	-webkit-clip-path: circle(25% at 100% 100%);
 	clip-path: circle(25% at 100% 100%);
 }
 html[dir="rtl"] .grid__item:is(:hover, :focus-visible) .card::after {
+	-webkit-clip-path: circle(25% at 0% 100%);
 	clip-path: circle(25% at 0% 100%);
 }
 .grid__item:is(:hover, :focus-visible) .card__header {
@@ -514,12 +657,22 @@ html[dir="rtl"] .grid__item:is(:hover, :focus-visible) .card::after {
 
 /* 6.3. CARD GRAPHICS */
 .card :is(.burger, .salad, .meal) {
+	-webkit-transition: -webkit-transform var(--transition-elastic), -webkit-filter var(--transition-elastic);
+	transition: -webkit-transform var(--transition-elastic), -webkit-filter var(--transition-elastic);
+	-o-transition: transform var(--transition-elastic), filter var(--transition-elastic);
 	transition: transform var(--transition-elastic), filter var(--transition-elastic);
+	transition: transform var(--transition-elastic), filter var(--transition-elastic), -webkit-transform var(--transition-elastic),
+		-webkit-filter var(--transition-elastic);
+	-webkit-transform: scale(1.25);
+	-ms-transform: scale(1.25);
 	transform: scale(1.25);
 }
 
 .grid__item:is(:hover, :focus-visible) :is(.burger, .salad, .meal) {
+	-webkit-filter: drop-shadow(0 0 1.5rem hsla(var(--primary-hue), var(--primary-saturation), 30%, 0.25));
 	filter: drop-shadow(0 0 1.5rem hsla(var(--primary-hue), var(--primary-saturation), 30%, 0.25));
+	-webkit-transform: scale(1.5) scaleY(1.5) translateY(-25%);
+	-ms-transform: scale(1.5) scaleY(1.5) translateY(-25%);
 	transform: scale(1.5) scaleY(1.5) translateY(-25%);
 }
 
@@ -531,54 +684,86 @@ html[dir="rtl"] .grid__item:is(:hover, :focus-visible) .card::after {
 	margin-inline: auto;
 }
 :is(.burger, .salad, .meal) * {
+	-webkit-transition: -webkit-transform var(--transition-elastic);
+	transition: -webkit-transform var(--transition-elastic);
+	-o-transition: transform var(--transition-elastic);
 	transition: transform var(--transition-elastic);
+	transition: transform var(--transition-elastic), -webkit-transform var(--transition-elastic);
 }
 
 /* 7.1. BURGER */
 .grid__item:is(:hover, :focus-visible) .burger > * {
+	-webkit-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
 	transform: translate(0, 0);
 }
 
 /* 7.2. SALAD */
 .grid__item:is(:hover, :focus-visible) .salad > *#lettuce-b {
+	-webkit-transform: translate(5%, -25%) rotateZ(15deg);
+	-ms-transform: translate(5%, -25%) rotate(15deg);
 	transform: translate(5%, -25%) rotateZ(15deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#onion-d {
+	-webkit-transform: translate(10%, -20%) skewX(-15deg);
+	-ms-transform: translate(10%, -20%) skewX(-15deg);
 	transform: translate(10%, -20%) skewX(-15deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#tomato-e {
+	-webkit-transform: translate(10%, -10%) skewY(-5deg);
+	-ms-transform: translate(10%, -10%) skewY(-5deg);
 	transform: translate(10%, -10%) skewY(-5deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#tomato-d {
+	-webkit-transform: translate(-10%, -20%) rotateZ(10deg);
+	-ms-transform: translate(-10%, -20%) rotate(10deg);
 	transform: translate(-10%, -20%) rotateZ(10deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#lettuce-a {
+	-webkit-transform: translate(0, 10%) rotateZ(-15deg);
+	-ms-transform: translate(0, 10%) rotate(-15deg);
 	transform: translate(0, 10%) rotateZ(-15deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#tomato-b {
+	-webkit-transform: translate(5%, -30%) skewY(25deg);
+	-ms-transform: translate(5%, -30%) skewY(25deg);
 	transform: translate(5%, -30%) skewY(25deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#onion-c {
+	-webkit-transform: translate(5%, -10%) rotateZ(-5deg);
+	-ms-transform: translate(5%, -10%) rotate(-5deg);
 	transform: translate(5%, -10%) rotateZ(-5deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#tomato-a {
+	-webkit-transform: translate(0, 17.5%) rotateZ(-20deg);
+	-ms-transform: translate(0, 17.5%) rotate(-20deg);
 	transform: translate(0, 17.5%) rotateZ(-20deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#onion-b {
+	-webkit-transform: translate(10%, -24.5%) rotateZ(30deg);
+	-ms-transform: translate(10%, -24.5%) rotate(30deg);
 	transform: translate(10%, -24.5%) rotateZ(30deg);
 }
 .grid__item:is(:hover, :focus-visible) .salad > *#onion-a {
+	-webkit-transform: translate(55%, -20%) rotateZ(40deg);
+	-ms-transform: translate(55%, -20%) rotate(40deg);
 	transform: translate(55%, -20%) rotateZ(40deg);
 }
 
 /* 7.3. MEAL */
 .grid__item:is(:hover, :focus-visible) .meal #menu-cup-cap {
+	-webkit-transform: translate(2.5%, -10%) rotateZ(5deg);
+	-ms-transform: translate(2.5%, -10%) rotate(5deg);
 	transform: translate(2.5%, -10%) rotateZ(5deg);
 }
 .grid__item:is(:hover, :focus-visible) .meal #menu-top-bun {
+	-webkit-transform: translate(-5%, -8%) rotateZ(-5deg);
+	-ms-transform: translate(-5%, -8%) rotate(-5deg);
 	transform: translate(-5%, -8%) rotateZ(-5deg);
 }
 .grid__item:is(:hover, :focus-visible) .meal :is(#menu-ketchup, #menu-patties, #menu-bottom-sauce) {
+	-webkit-transform: translate(-4%, -4%) rotateZ(-4deg);
+	-ms-transform: translate(-4%, -4%) rotate(-4deg);
 	transform: translate(-4%, -4%) rotateZ(-4deg);
 }
 
@@ -586,13 +771,20 @@ html[dir="rtl"] .grid__item:is(:hover, :focus-visible) .card::after {
 aside {
 	background-color: var(--card-bg);
 	border-radius: var(--radius);
+	-webkit-box-shadow: var(--shadow-clone);
 	box-shadow: var(--shadow-clone);
+	-ms-grid-column: 1;
 	grid-column: 1 / 1;
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 1;
 	grid-row: 2 / 3;
 	inline-size: 100%;
 	inset-block-start: -3em;
 	overflow: hidden;
 	position: sticky;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 [data-aside-title] {
@@ -601,36 +793,55 @@ aside {
 aside ul:not([data-dropdown]) {
 	counter-reset: list-numbers;
 
+	display: -ms-grid;
+
 	display: grid;
 	gap: 1em;
+	grid-auto-columns: -webkit-min-content;
 	grid-auto-columns: min-content;
 	grid-auto-flow: column;
 	list-style-type: none;
 	overflow-x: auto;
 	overscroll-behavior-inline: contain;
+	-webkit-padding-after: 1.5em;
 	padding-block-end: 1.5em;
+	-webkit-padding-before: 0.5em;
 	padding-block-start: 0.5em;
 	padding-inline: 1.5em;
 	scroll-padding-inline: 1.5em;
+	-ms-scroll-snap-type: inline mandatory;
 	scroll-snap-type: inline mandatory;
 }
 aside ul:not([data-dropdown]) li a:not([data-skip]) {
 	counter-increment: list-numbers;
 
+	-webkit-box-align: center;
+
+	-ms-flex-align: center;
+
 	align-items: center;
 	border-radius: var(--radius);
+	-webkit-box-shadow: var(--shadow-clone);
 	box-shadow: var(--shadow-clone);
 	cursor: pointer;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	font-weight: bold;
 	gap: 1em;
+	inline-size: -webkit-max-content;
+	inline-size: -moz-max-content;
 	inline-size: max-content;
 	outline: none;
 	padding-block: 0.5em;
+	-webkit-padding-end: 1em;
 	padding-inline-end: 1em;
+	-webkit-padding-start: 0.5em;
 	padding-inline-start: 0.5em;
 	scroll-snap-align: start;
 	white-space: nowrap;
+	-webkit-transition: color var(--transition-fast), background-color var(--transition-fast);
+	-o-transition: color var(--transition-fast), background-color var(--transition-fast);
 	transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 aside ul:not([data-dropdown]) li a:not([data-skip])::before {
@@ -640,7 +851,10 @@ aside ul:not([data-dropdown]) li a:not([data-skip])::before {
 	font-size: 1.5em;
 	font-weight: bolder;
 	padding-inline: 0.5em;
+	-webkit-margin-end: -0.25em;
 	margin-inline-end: -0.25em;
+	-webkit-transition: color var(--transition-fast);
+	-o-transition: color var(--transition-fast);
 	transition: color var(--transition-fast);
 }
 aside ul:not([data-dropdown]) li a:not([data-skip]):is(:hover, :focus) {
@@ -656,8 +870,14 @@ aside ul:not([data-dropdown]) li a:not([data-skip]):focus-visible {
 
 /* 9. FOOTER */
 footer {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
 }
 footer #github-repo {
@@ -665,6 +885,16 @@ footer #github-repo {
 }
 
 /* 10. ANIMATION */
+@-webkit-keyframes pulse {
+	0% {
+		transform: scale(1) translateZ(0);
+		-webkit-transform: scale(1) translateZ(0);
+	}
+	50% {
+		transform: scale(0.95);
+		-webkit-transform: scale(0.95) translateZ(0);
+	}
+}
 @keyframes pulse {
 	0% {
 		transform: scale(1) translateZ(0);
@@ -684,6 +914,8 @@ footer #github-repo {
 
 	footer,
 	nav {
+		-ms-grid-column: 1;
+		-ms-grid-column-span: 2;
 		grid-column: 1 / 3;
 	}
 
@@ -696,7 +928,9 @@ footer #github-repo {
 		padding-inline: 3em;
 	}
 	.wrapper-grid {
+		-ms-grid-columns: 1fr 3em auto;
 		grid-template-columns: 1fr auto;
+		-ms-grid-rows: auto 3em 1fr 3em auto;
 		grid-template-rows: auto 1fr auto;
 		gap: 3em;
 	}
@@ -711,19 +945,28 @@ footer #github-repo {
 		display: none;
 	}
 	ul[data-dropdown] {
+		-webkit-box-align: center;
+		-ms-flex-align: center;
 		align-items: center;
 		background-color: transparent;
 		block-size: unset;
+		display: -webkit-inline-box;
+		display: -ms-inline-flexbox;
 		display: inline-flex;
 		gap: 0.5em;
 		inset: unset;
 		opacity: 1;
 		overflow-y: visible;
+		-ms-scroll-chaining: unset;
 		overscroll-behavior: unset;
 		padding: 0;
 		pointer-events: all;
 		position: static;
+		-webkit-transform: translateX(0);
+		-ms-transform: translateX(0);
 		transform: translateX(0);
+		-webkit-transition: opacity var(--transition);
+		-o-transition: opacity var(--transition);
 		transition: opacity var(--transition);
 		visibility: visible;
 	}
@@ -736,6 +979,7 @@ footer #github-repo {
 	ul[data-dropdown] li > ul {
 		background-color: var(--bg-card);
 		border-radius: var(--radius-sm);
+		-webkit-box-shadow: var(--shadow-clone);
 		box-shadow: var(--shadow-clone);
 		inset-block-start: calc(100% + 0.25em);
 		inset-inline-start: -0.5em;
@@ -743,39 +987,67 @@ footer #github-repo {
 		opacity: 0;
 		padding: 0.5em;
 		position: absolute;
+		-webkit-transform: scale(0);
+		-ms-transform: scale(0);
 		transform: scale(0);
+		-webkit-transition-delay: 0.5s;
+		-o-transition-delay: 0.5s;
 		transition-delay: 0.5s;
 	}
 	ul[data-dropdown] li > ul ul {
 		inset-block-start: 0;
+		-webkit-transform: scale(0) translateX(-100%);
+		-ms-transform: scale(0) translateX(-100%);
 		transform: scale(0) translateX(-100%);
+		-webkit-transition-delay: 0.5s;
+		-o-transition-delay: 0.5s;
 		transition-delay: 0.5s;
 	}
 	ul[data-dropdown] li:is(:focus-within, :hover) > ul {
 		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
 		transform: scale(1);
+		-webkit-transition-delay: 0s;
+		-o-transition-delay: 0s;
 		transition-delay: 0s;
 	}
 	ul[data-dropdown] li:is(:focus-within, :hover) > ul ul {
+		-webkit-transform: scale(1) translateX(-100%);
+		-ms-transform: scale(1) translateX(-100%);
 		transform: scale(1) translateX(-100%);
+		-webkit-transition-delay: 0.15s;
+		-o-transition-delay: 0.15s;
 		transition-delay: 0.15s;
 	}
 	ul[data-dropdown] li > ul a:not([data-skip]):is(:hover, :focus-visible) {
 		background-color: var(--bg);
 	}
 	html[dir="rtl"] ul[data-dropdown] li > ul {
+		-webkit-box-shadow: var(--shadow-clone);
 		box-shadow: var(--shadow-clone);
 	}
 	html[dir="rtl"] ul[data-dropdown] li ul ul {
+		-webkit-transform: scale(0) translateX(100%);
+		-ms-transform: scale(0) translateX(100%);
 		transform: scale(0) translateX(100%);
 	}
 	html[dir="rtl"] ul[data-dropdown] li:is(:focus-within, :hover) > ul ul {
+		-webkit-transform: scale(1) translateX(100%);
+		-ms-transform: scale(1) translateX(100%);
 		transform: scale(1) translateX(100%);
 	}
 
 	aside {
+		display: -webkit-box;
+		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-ms-flex-direction: column;
 		flex-direction: column;
+		-ms-grid-column: 2;
+		-ms-grid-column-span: 1;
 		grid-column: 2 / 3;
 		inline-size: 22.5rem;
 		inset-block-start: 3rem;
@@ -784,12 +1056,14 @@ footer #github-repo {
 	}
 	aside ul:not([data-dropdown]) {
 		grid-auto-flow: row;
+		grid-auto-rows: -webkit-min-content;
 		grid-auto-rows: min-content;
 		overflow-x: hidden;
 		overflow-y: auto;
 		overscroll-behavior-block: contain;
 		padding-inline: 1.5em;
 		scroll-padding-block: 0.5em;
+		-ms-scroll-snap-type: block;
 		scroll-snap-type: block;
 	}
 	aside ul:not([data-dropdown]) li {
@@ -803,6 +1077,7 @@ footer #github-repo {
 
 @media (min-width: 1280px) {
 	.span--2 {
+		-ms-grid-column-span: 2;
 		grid-column: span 2;
 	}
 	.grid {
@@ -819,9 +1094,12 @@ footer #github-repo {
 
 @media print, screen and (pointer: coarse), (prefers-reduced-motion) {
 	.grid__item:is(:hover, :focus-visible) .card {
+		-webkit-transform: none;
+		-ms-transform: none;
 		transform: none;
 	}
 	.grid__item:is(:hover, :focus-visible) .card::after {
+		-webkit-clip-path: circle(25% at 100% 100%);
 		clip-path: circle(25% at 100% 100%);
 	}
 	.grid__item:is(:hover, :focus-visible) .card__header {
@@ -831,61 +1109,93 @@ footer #github-repo {
 		opacity: 0;
 	}
 	.grid__item:is(:hover, :focus-visible) :is(.burger, .salad, .meal) {
+		-webkit-filter: drop-shadow(0 0 1.5rem hsla(var(--primary-hue), var(--primary-saturation), 30%, 0.25));
 		filter: drop-shadow(0 0 1.5rem hsla(var(--primary-hue), var(--primary-saturation), 30%, 0.25));
+		-webkit-transform: scale(1.5) translateY(-10%);
+		-ms-transform: scale(1.5) translateY(-10%);
 		transform: scale(1.5) translateY(-10%);
 	}
 
 	/* BURGER */
 	.burger > * {
+		-webkit-transform: translate(0, 0);
+		-ms-transform: translate(0, 0);
 		transform: translate(0, 0);
 	}
 
 	/* SALAD */
 	.salad > *#lettuce-b {
+		-webkit-transform: translate(5%, -25%) rotateZ(15deg);
+		-ms-transform: translate(5%, -25%) rotate(15deg);
 		transform: translate(5%, -25%) rotateZ(15deg);
 	}
 	.salad > *#onion-d {
+		-webkit-transform: translate(10%, -20%) skewX(-15deg);
+		-ms-transform: translate(10%, -20%) skewX(-15deg);
 		transform: translate(10%, -20%) skewX(-15deg);
 	}
 	.salad > *#tomato-e {
+		-webkit-transform: translate(10%, -10%) skewY(-5deg);
+		-ms-transform: translate(10%, -10%) skewY(-5deg);
 		transform: translate(10%, -10%) skewY(-5deg);
 	}
 	.salad > *#tomato-d {
+		-webkit-transform: translate(-10%, -20%) rotateZ(10deg);
+		-ms-transform: translate(-10%, -20%) rotate(10deg);
 		transform: translate(-10%, -20%) rotateZ(10deg);
 	}
 	.salad > *#lettuce-a {
+		-webkit-transform: translate(0, 10%) rotateZ(-15deg);
+		-ms-transform: translate(0, 10%) rotate(-15deg);
 		transform: translate(0, 10%) rotateZ(-15deg);
 	}
 	.salad > *#tomato-b {
+		-webkit-transform: translate(5%, -30%) skewY(25deg);
+		-ms-transform: translate(5%, -30%) skewY(25deg);
 		transform: translate(5%, -30%) skewY(25deg);
 	}
 	.salad > *#onion-c {
+		-webkit-transform: translate(5%, -10%) rotateZ(-5deg);
+		-ms-transform: translate(5%, -10%) rotate(-5deg);
 		transform: translate(5%, -10%) rotateZ(-5deg);
 	}
 	.salad > *#tomato-a {
+		-webkit-transform: translate(0, 17.5%) rotateZ(-20deg);
+		-ms-transform: translate(0, 17.5%) rotate(-20deg);
 		transform: translate(0, 17.5%) rotateZ(-20deg);
 	}
 	.salad > *#onion-b {
+		-webkit-transform: translate(10%, -24.5%) rotateZ(30deg);
+		-ms-transform: translate(10%, -24.5%) rotate(30deg);
 		transform: translate(10%, -24.5%) rotateZ(30deg);
 	}
 	.salad > *#onion-a {
+		-webkit-transform: translate(55%, -20%) rotateZ(40deg);
+		-ms-transform: translate(55%, -20%) rotate(40deg);
 		transform: translate(55%, -20%) rotateZ(40deg);
 	}
 
 	/* MEAL */
 	.meal #menu-cup-cap {
+		-webkit-transform: translate(2.5%, -10%) rotateZ(5deg);
+		-ms-transform: translate(2.5%, -10%) rotate(5deg);
 		transform: translate(2.5%, -10%) rotateZ(5deg);
 	}
 	.meal #menu-top-bun {
+		-webkit-transform: translate(-5%, -8%) rotateZ(-5deg);
+		-ms-transform: translate(-5%, -8%) rotate(-5deg);
 		transform: translate(-5%, -8%) rotateZ(-5deg);
 	}
 	.meal :is(#menu-ketchup, #menu-patties, #menu-bottom-sauce) {
+		-webkit-transform: translate(-4%, -4%) rotateZ(-4deg);
+		-ms-transform: translate(-4%, -4%) rotate(-4deg);
 		transform: translate(-4%, -4%) rotateZ(-4deg);
 	}
 }
 
 @media (prefers-reduced-motion) {
 	.grid__item:target {
+		-webkit-animation: none;
 		animation: none;
 		outline-style: solid;
 		outline-offset: 0.75em;
@@ -893,6 +1203,8 @@ footer #github-repo {
 		outline-width: 0.25em;
 	}
 	.grid__item:not(:target):active {
+		-webkit-transform: none;
+		-ms-transform: none;
 		transform: none;
 	}
 }
@@ -914,6 +1226,7 @@ footer #github-repo {
 	}
 
 	.grid {
+		-ms-grid-columns: 1fr;
 		grid-template-columns: 1fr;
 	}
 	.container {
